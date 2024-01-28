@@ -14,7 +14,7 @@ options.add_argument('--mute-audio')
 options.add_argument('--no-sandbox')
 #driver = webdriver.Chromium(service=service,options=options)
 driver = webdriver.Chrome(options=options,service=ChromiumService(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()))
-driver.get('https://blaze.com/pt/games/double')
+driver.get('https://blaze-7.com/pt/games/double')
 sleep(5)
 
     
@@ -43,11 +43,11 @@ def esperar():
             break
         
 def retornar_historico():
-    return [i['color'] for i in requests.get('https://blaze.com/api/roulette_games/recent').json()][::-1]
+    return [i['color'] for i in requests.get('https://blaze-7.com/api/roulette_games/recent').json()][::-1]
 
             
 def retornar_ultimo():
-    return requests.get('https://blaze.com/api/roulette_games/current').json()['color']
+    return requests.get('https://blaze-7.com/api/roulette_games/current').json()['color']
 
 def martin_gale(gale,ultimo):
     enviar_mensagem(gale)
@@ -64,7 +64,7 @@ def martin_gale(gale,ultimo):
 def enviar_mensagem(mensagem):
     bot_token = ''
     chat_id = ''
-    url_blaze = '🎰 [Blaze](https://blaze.com/pt/games/double)'
+    url_blaze = '🎰 [Blaze](https://blaze-7.com/pt/games/double)'
     url = f'https://api.telegram.org/bot{bot_token}/sendMessage?chat_id={chat_id}&text={mensagem}\n{url_blaze}&parse_mode=Markdown'
     requests.get(url)
 
@@ -125,6 +125,6 @@ while True:
                     break
     except Exception as e:
         print(e)
-        driver.get('https://blaze.com/pt/games/double')
+        driver.get('https://blaze-7.com/pt/games/double')
         sleep(10)
         pass
